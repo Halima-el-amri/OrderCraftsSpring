@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Web MVC Thymeleaf Hello World Example</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+    <a class="navbar-brand" th:href="@{/}" href="#">ArtWood</a>
+    <a class="navbar-brand" th:href="@{/customer/list}" href="#">Customers</a>
+    <a class="navbar-brand" th:href="@{/item/list}" href="#">Products</a>
+    <a class="navbar-brand" href="#">Orders</a>
+    <a th:href="@{/user/logout}">Logout</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- Add this link/button wherever you want to provide the option to logout -->
+
+
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>List Customers</h1>
+
+        <!-- Add Customer Button -->
+        <a th:href="@{/customer/showForm}" class="btn btn-info">Add Customer</a>
+
+        <!-- Search form -->
+        <form class="form-inline mt-3" th:action="@{/customer/search}" method="get">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="searchInput" class="sr-only">Search:</label>
+                <input type="text" class="form-control" id="searchInput" name="q" placeholder="Search"/>
+            </div>
+            <button type="submit" class="btn btn-info mb-2">Search</button>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Adresse</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c:${customers}">
+            <td th:text="${c.id}"> </td>
+            <td th:text="${c.firstName }"> </td>
+            <td th:text="${c.lastName}"> </td>
+            <td th:text="${c.email}"> </td>
+            <td th:text="${c.adr}"> </td>
+            <td>
+                <!-- Add action buttons for update and delete -->
+                <a th:href="@{/customer/updateForm(customerId=${c.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/customer/delete(customerId=${c.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

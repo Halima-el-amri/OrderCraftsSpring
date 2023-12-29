@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Web MVC Thymeleaf Hello World Example</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>Welcome to ArtWood</h1>
+        <h2>
+            <!-- Add more content if needed -->
+        </h2>
+
+        <!-- Buttons for registration and login -->
+        <div>
+            <a class="btn btn-primary" th:href="@{/user/registerForm}">Register</a>
+            <a class="btn btn-success" th:href="@{/user/loginForm}">Login</a>
+        </div>
+    </div>
+</main>
+
+<!-- Bootstrap core JS -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

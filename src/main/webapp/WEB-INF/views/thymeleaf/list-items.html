@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Item List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+    <a class="navbar-brand" th:href="@{/}" href="#">ArtWood</a>
+    <a class="navbar-brand" th:href="@{/customer/list}" href="#">Customers</a>
+    <a class="navbar-brand" th:href="@{/item/list}" href="#">Products</a>
+    <a class="navbar-brand"  href="#">Orders</a>
+    <a class="navbar-brand" th:href="@{/}" href="#">LogOut</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>List Items</h1>
+
+        <!-- Add Item Button -->
+        <a th:href="@{/item/showForm}" class="btn btn-info">Add Item</a>
+
+        <!-- Search form -->
+        <form class="form-inline mt-3" th:action="@{/item/search}" method="get">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="searchInput" class="sr-only">Search:</label>
+            <input type="text" class="form-control" id="searchInput" name="q" placeholder="Search"/>
+        </div>
+        <button type="submit" class="btn btn-info mb-2">Search</button>
+    </form>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Libelle</th>
+            <th>Categorie</th>
+            <th>Prix</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${items}">
+            <td th:text="${item.id}"> </td>
+            <td th:text="${item.libelle }"> </td>
+            <td th:text="${item.categorie}"> </td>
+            <td th:text="${item.prix}"> </td>
+            <td th:text="${item.quantity}"> </td>
+            <td>
+                <!-- Add action buttons for update and delete -->
+                <a th:href="@{/item/updateForm(itemId=${item.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/item/delete(itemId=${item.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
